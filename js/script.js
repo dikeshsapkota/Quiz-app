@@ -1,34 +1,7 @@
-const beginBtn = document.getElementById('begin-btn');
-const selectCategory = document.getElementById('select-category');
-const startScreen = document.getElementById("start-screen");
-const quizContainer = document.getElementById("quiz-container");
-const questionEl = document.getElementById("question");
-const optionsEl = document.getElementById("options");
-const nextBtn = document.getElementById("next-btn");
-const resultContainer = document.getElementById("result-container");
-const scoreEl = document.getElementById("score");
-const restartBtn = document.getElementById("restart-btn");
 
-let questions = [];
-let currentQuestionIndex = 0;
-let score = 0;
 
-// Load categories from OpenTDB API
-async function loadCategories() {
-    try {
-        const res = await fetch("https://opentdb.com/api_category.php");
-        const data = await res.json();
-        data.trivia_categories.forEach(cat => {
-            const option = document.createElement("option");
-            option.value = cat.id;
-            option.textContent = cat.name;
-            selectCategory.appendChild(option);
-        });
-    } catch (err) {
-        console.error(err);
-    }
-}
-loadCategories();
+
+
 
 // Start quiz
 beginBtn.addEventListener("click", async () => {
@@ -78,7 +51,6 @@ function showQuestion() {
 
     nextBtn.style.display = "none";
 }
-
 // Handle answer selection
 function selectAnswer(selected, button) {
     const q = questions[currentQuestionIndex];
