@@ -1,17 +1,25 @@
 // Load categories from OpenTDB API
-export async function fetchCategories() {
-  
-        const res = await fetch("https://opentdb.com/api_category.php");
-        const data = await res.json();
-                return data.trivia_categories;
+
+const BASE_URL = "https://opentdb.com";
+ async function fetchData(endpoint) {
+  try {
+    const res = await fetch(`${BASE_URL}/${endpoint}`);
+    if(!res.ok) throw new Error (`API call failed: ${res.statusText}`);
+    return await res.json();
+  } catch (err) {
+    alert("Somothing went wrong");
+    return null;
+  }
 }
             
- 
+export async function getCategories(){
+  const endpoint = `api_category.php`;
+  const data = await fetchData(endpoint);
+  return data ? data.trivia_categories : [];
+} 
 
-export async function fetchQuestions(categoryId) {
-  const res = await fetch(
-    `https://opentdb.com/api.php?amount=5&category=${categoryId}&type=multiple`
-  );
-  const data = await res.json();
-  return data.results;
+export async function getQuestions(categoryID, amount = 5, type = "multiple"){
+  const endpoint = `api.php?amount=${amount}&category=${categoryID}&type=${type}`;
+  const data = await fetchData(endpoint);
+  return data ? data.results : [];
 }
