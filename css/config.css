@@ -1,0 +1,10 @@
+:root {
+    --color-bg-body: #f0f4f8;
+    --color-bg-card: #fff;
+    --color-text-light: #fff;
+
+    /* Spacing */
+
+    /* Border Radius */
+    --radius-sm: 8px;
+}
