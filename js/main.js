@@ -1,12 +1,13 @@
 import * as dom from "./dom.js";
-import { fetchCategories, fetchQuestions } from "./api.js";
+import { getCategories, getQuestions } from "./api.js";
 import { setupQuestions, nextQuestion } from "./quiz.js";
 import { showQuestion } from "./ui.js";
 import { state } from "./state.js";
 
 // Load categories
 (async function initCategories() {
-  const categories = await fetchCategories();
+  const categories = await getCategories();
+  if (!categories) return;
   categories.forEach(cat => {
     const option = document.createElement("option");
     option.value = cat.id;
@@ -17,10 +18,12 @@ import { state } from "./state.js";
 
 // Start quiz
 dom.beginBtn.addEventListener("click", async () => {
-  const categoryId = dom.selectCategory.value;
-  if (!categoryId) return alert("Please select a category");
+  const categoryID = dom.selectCategory.value;
+  if (!categoryID) return alert("Please select a category");
 
-  const apiQuestions = await fetchQuestions(categoryId);
+  const apiQuestions = await getQuestions(categoryID);
+  console.log(apiQuestions.length);
+  // if (!apiQuestions || apiQuestions.length === 0) return alert("No questions found");
 
   setupQuestions(apiQuestions);
   state.currentQuestionIndex = 0;
