@@ -6,14 +6,12 @@ export async function fetchCategories() {
                 return data.trivia_categories;
 }
             
-//         data.trivia_categories.forEach(cat => {
-//             const option = document.createElement("option");
-//             option.value = cat.id;
-//             option.textContent = cat.name;
-//             selectCategory.appendChild(option);
-//         });
-//     } catch (err) {
-//         console.error(err);
-//     }
-// }
-// loadCategories();
+ 
+
+export async function fetchQuestions(categoryId) {
+  const res = await fetch(
+    `https://opentdb.com/api.php?amount=5&category=${categoryId}&type=multiple`
+  );
+  const data = await res.json();
+  return data.results;
+}
