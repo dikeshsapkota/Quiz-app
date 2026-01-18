@@ -1,10 +1,49 @@
 :root {
-    --color-bg-body: #f0f4f8;
-    --color-bg-card: #fff;
-    --color-text-light: #fff;
+    --color-bg-body: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --color-bg-card: rgba(255, 255, 255, 0.95);
+    --color-text-main: #2d3748;
+    --color-text-secondary: #718096;
+    --color-primary: #667eea;
+    --color-secondary: #764ba2;
+    --color-accent: #ed64a6;
+    --color-success: #48bb78;
+    --color-error: #f56565;
+    --color-white: #ffffff;
+    
+    /* New colors extracted from style.css */
+    --color-bg-light: #f7fafc;
+    --color-bg-hover: #ebf4ff;
+    --color-border: #e2e8f0;
+    --color-modal-overlay: rgba(0,0,0,0.5);
+    --color-close-btn: #aaa;
+    --color-live-score-bg: rgba(255, 255, 255, 0.2);
+    
+    /* Leaderboard colors */
+    --color-rank-1-bg: #fff5f5;
+    --color-rank-1-border: #fed7d7;
+    --color-rank-1-text: #c53030;
+    
+    --color-rank-2-bg: #fffaf0;
+    --color-rank-2-border: #feebc8;
+    --color-rank-2-text: #c05621;
+    
+    --color-rank-3-bg: #f0fff4;
+    --color-rank-3-border: #c6f6d5;
+    --color-rank-3-text: #2f855a;
 
     /* Spacing */
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
 
     /* Border Radius */
     --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }

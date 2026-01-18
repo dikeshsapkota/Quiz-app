@@ -15,7 +15,6 @@ function processQuestions(apiQuestions) {
   });
 }
 
-
 export async function startQuiz(categoryID){
   const apiQuestions = await getQuestions(categoryID);
   if (!apiQuestions || apiQuestions.length === 0){
@@ -26,7 +25,10 @@ export async function startQuiz(categoryID){
   state.questions = processQuestions(apiQuestions);
   state.currentQuestionIndex = 0;
   state.score = 0;
-
+  
+  view.updateLiveScore(0);
+  view.setQuizTitle();
+  view.toggleScreen('quiz');
   displayCurrentQuestion();
 }
 
@@ -41,19 +43,25 @@ function handleAnswerSelection(selectedOption, buttonElement){
 
   if(isCorrect){
     state.score++;
+    view.updateLiveScore(state.score);
   }
 
   view.updateAnswerFeedback(buttonElement, isCorrect, currentQuestion.correct)
 }
-
 
 export function nextQuestion(){
   state.currentQuestionIndex++;
   if(state.currentQuestionIndex < state.questions.length){
     displayCurrentQuestion();
   } else {
-    view.showResult(state.score, state.questions.length);
+    endQuiz();
   }
+}
+
+function endQuiz() {
+    const isNewHigh = saveScore(state.score);
+    const msg = isNewHigh ? "New High Score! 🏆" : "Good Job! 👍";
+    view.showResult(state.score, state.questions.length, msg);
 }
 
 export function restartQuiz(){
@@ -61,31 +69,36 @@ export function restartQuiz(){
   view.toggleScreen('start');
 }
 
+export function goHome() {
+    view.resetCategorySelect();
+    view.toggleScreen('start');
+}
 
-// export function selectAnswer(selected, button) {
-//   const q = state.questions[state.currentQuestionIndex];
-//   const buttons = document.querySelectorAll(".option-btn");
+const MAX_HIGH_SCORES = 5;
 
-//   buttons.forEach(btn => (btn.disabled = true));
+function saveScore(score) {
+    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    const newScore = { score, date: new Date() };
+    
+    let isNewHigh = false;
+    if (highScores.length < MAX_HIGH_SCORES || score > highScores[highScores.length - 1].score) {
+        highScores.push(newScore);
+        highScores.sort((a, b) => b.score - a.score);
+        highScores.splice(MAX_HIGH_SCORES); // Keep top 5
+        localStorage.setItem('highScores', JSON.stringify(highScores));
+        
+        if (highScores.some(s => s === newScore)) { 
+        }
+    }
+    return isNewHigh;
+}
 
-//   if (selected === q.correct) {
-//     state.score++;
-//     button.classList.add("correct");
-//   } else {
-//     button.classList.add("incorrect");
-//     buttons.forEach(btn => {
-//       if (btn.innerHTML === q.correct) btn.classList.add("correct");
-//     });
-//   }
+export function openLeaderboard() {
+    const highScores = JSON.parse(localStorage.getItem('highScores')) || [];
+    view.showLeaderboard(highScores);
+    view.toggleScreen('leaderboard');
+}
 
-//   document.getElementById("next-btn").style.display = "inline-block";
-// }
-
-// export function nextQuestion() {
-//   state.currentQuestionIndex++;
-//   if (state.currentQuestionIndex < state.questions.length) {
-//     showQuestion();
-//   } else {
-//     showResult();
-//   }
-// }
+export function closeLeaderboard() {
+    view.toggleScreen('start');
+}

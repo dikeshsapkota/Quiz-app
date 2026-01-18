@@ -1,6 +1,12 @@
 export const beginBtn = document.getElementById('begin-btn');
-export const selectCategory = document.getElementById('select-category');
+export const categoryGrid = document.getElementById('category-grid');
+export const categoryModal = document.getElementById('category-modal');
+export const subcategoryList = document.getElementById('subcategory-list');
+export const modalTitle = document.getElementById('modal-title');
+export const closeModalBtn = document.querySelector('.close-modal');
+
 export const startScreen = document.getElementById("start-screen");
+export const quizWrapper = document.getElementById("quiz-wrapper");
 export const quizContainer = document.getElementById("quiz-container");
 export const questionEl = document.getElementById("question");
 export const optionsEl = document.getElementById("options");
@@ -8,3 +14,11 @@ export const nextBtn = document.getElementById("next-btn");
 export const resultContainer = document.getElementById("result-container");
 export const scoreEl = document.getElementById("score");
 export const restartBtn = document.getElementById("restart-btn");
+export const leaderboardBtn = document.getElementById('leaderboard-btn');
+export const quizHeader = document.getElementById('quiz-header');
+export const quizCategoryTitle = document.getElementById('quiz-category-title');
+export const liveScoreVal = document.getElementById('live-score-val');
+export const leaderboardContainer = document.getElementById('leaderboard-container');
+export const highScoresList = document.getElementById('high-scores-list');
+export const backBtn = document.getElementById('back-btn');
+export const homeBtn = document.getElementById('home-btn');

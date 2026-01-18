@@ -15,6 +15,7 @@ const BASE_URL = "https://opentdb.com";
 export async function getCategories(){
   const endpoint = `api_category.php`;
   const data = await fetchData(endpoint);
+  console.log(data.trivia_categories);
   return data ? data.trivia_categories : [];
 } 
 
