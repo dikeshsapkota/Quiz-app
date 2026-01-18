@@ -12,22 +12,51 @@
     <h1>WELCOME!! CHALLENGERS</h1>
     <p class="lead">Choose your category and start the quiz!</p>
 
-    <select class="form-select" id="select-category">
-        <option value="">-- Select Category --</option>
-    </select>
+    <div class="category-grid" id="category-grid">
+    </div>
     <br><br>
     <button id="begin-btn">Begin Quiz</button>
+    <button id="leaderboard-btn" class="secondary-btn">Leaderboard</button>
 </div>
 
-<div class="quiz-container" id="quiz-container" style="display:none;">
-    <h2 id="question"></h2>
-    <div id="options"></div>
-    <button id="next-btn">Next</button>
+<div class="quiz-header" id="quiz-header" style="display:none;">
+    <div class="progress-bar"></div>
+    <div class="header-content">
+        <div class="live-score">Score: <span id="live-score-val">0</span></div>
+    </div>
+</div>
+
+<div class="quiz-wrapper" id="quiz-wrapper" style="display:none;">
+    <h2 id="quiz-category-title" class="quiz-title-display"></h2>
+    <div class="quiz-container" id="quiz-container">
+        <h2 id="question"></h2>
+        <div id="options"></div>
+        <button id="next-btn">Next</button>
+    </div>
 </div>
 
 <div class="result-container" id="result-container" style="display:none;">
-    <h2>Your Score: <span id="score"></span></h2>
+    <h2>Quiz Completed!</h2>
+    <div class="score-circle">
+        <span id="score"></span>
+    </div>
+    <p id="high-score-msg"></p>
     <button id="restart-btn">Restart Quiz</button>
+    <button id="home-btn" class="secondary-btn">Home</button>
+</div>
+
+<div class="leaderboard-container" id="leaderboard-container" style="display:none;">
+    <h2>High Scores</h2>
+    <ul id="high-scores-list"></ul>
+    <button id="back-btn">Back</button>
+</div>
+
+<div id="category-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <h2 id="modal-title">Subcategories</h2>
+        <div id="subcategory-list" class="subcategory-grid"></div>
+    </div>
 </div>
 
 <script type="module" src="js/main.js"></script>
