@@ -1,4 +1,3 @@
-
 export const state = {
  questions : [],
  currentQuestionIndex :0,

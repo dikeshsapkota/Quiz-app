@@ -6,5 +6,5 @@ export const questionEl = document.getElementById("question");
 export const optionsEl = document.getElementById("options");
 export const nextBtn = document.getElementById("next-btn");
 export const resultContainer = document.getElementById("result-container");
-const scoreEl = document.getElementById("score");
+export const scoreEl = document.getElementById("score");
 export const restartBtn = document.getElementById("restart-btn");
