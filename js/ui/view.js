@@ -157,6 +157,7 @@ export function populateCategories(categories) {
             card.dataset.id = group.id;
             card.addEventListener('click', () => {
                 setSelectedCategoryID(group.id, group.name);
+            
             });
         }
         categoryGrid.appendChild(card);
@@ -176,7 +177,8 @@ function openSubcategoryModal(title, subcategories) {
         btn.addEventListener('click', () => {
             const fullName = `${title}: ${sub.name}`;
             setSelectedCategoryID(sub.id, fullName);
-            closeModal();
+            //modal will close after 3 sec
+            setTimeout(closeModal,300);
         });
         
         subcategoryList.appendChild(btn);
