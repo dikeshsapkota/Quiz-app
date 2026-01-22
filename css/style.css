@@ -126,6 +126,13 @@ h2 {
     transform: scale(1.05);
     box-shadow: var(--shadow-md);
 }
+.subcategory-btn.selected {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-md);
+}
 
 .badge {
     position: absolute;
