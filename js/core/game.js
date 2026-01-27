@@ -1,7 +1,7 @@
 import { state } from "../state/state.js";
 import * as view from "../ui/view.js";
 import { getQuestions } from "../services/api.js";
-
+import { startTimer, stopTimer, resetTimer } from "../core/timer.js";
 function processQuestions(apiQuestions) {
   return apiQuestions.map(q => {
     const options = [...q.incorrect_answers];
@@ -29,8 +29,13 @@ export async function startQuiz(categoryID){
   view.updateLiveScore(0);
   view.setQuizTitle();
   view.toggleScreen('quiz');
+
+  resetTimer();
+  startTimer(nextQuestion); // ⬅ callback when time ends
+
   displayCurrentQuestion();
 }
+
 
 function displayCurrentQuestion(){
   const currentQuestion= state.questions[state.currentQuestionIndex];
@@ -50,8 +55,11 @@ function handleAnswerSelection(selectedOption, buttonElement){
 }
 
 export function nextQuestion(){
+  stopTimer();
   state.currentQuestionIndex++;
   if(state.currentQuestionIndex < state.questions.length){
+    resetTimer();
+    startTimer(nextQuestion);
     displayCurrentQuestion();
   } else {
     endQuiz();
@@ -59,6 +67,7 @@ export function nextQuestion(){
 }
 
 function endQuiz() {
+   stopTimer();
     const isNewHigh = saveScore(state.score);
     const msg = isNewHigh ? "New High Score! 🏆" : "Good Job! 👍";
     view.showResult(state.score, state.questions.length, msg);

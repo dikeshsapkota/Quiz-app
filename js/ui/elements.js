@@ -22,3 +22,10 @@ export const leaderboardContainer = document.getElementById('leaderboard-contain
 export const highScoresList = document.getElementById('high-scores-list');
 export const backBtn = document.getElementById('back-btn');
 export const homeBtn = document.getElementById('home-btn');
+export function getTimerElements() {
+  return {
+    timerContainer: document.getElementById("timer"),
+    timerText: document.getElementById("timer-text"),
+    timerFill: document.getElementById("timer-fill"),
+  };
+}

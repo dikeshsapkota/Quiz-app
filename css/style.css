@@ -16,6 +16,60 @@ body {
     color: var(--color-text-main);
     overflow-x: hidden;
 }
+/* Countdown Timer */
+
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    min-width: 160px;
+    padding: var(--spacing-sm);
+    background: var(--color-live-score-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+}
+
+/* Time text */
+.timer-text {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-main);
+    text-align: right;
+}
+
+/* Progress bar wrapper */
+.timer-progress {
+    width: 100%;
+    height: 8px;
+    background: var(--color-border);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+/* Animated progress fill */
+.timer-progress-fill {
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--color-success),
+        var(--color-accent),
+        var(--color-error)
+    );
+    border-radius: var(--radius-full);
+    transition: width 1s linear;
+}
+
+
+.timer-container.warning .timer-text {
+    color: var(--color-error);
+}
+
+.timer-container.warning .timer-progress-fill {
+    animation: pulse 0.8s infinite;
+}
+
+
 
 /* Animations */
 @keyframes fadeIn {
