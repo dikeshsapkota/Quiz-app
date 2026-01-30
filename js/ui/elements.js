@@ -24,8 +24,8 @@ export const backBtn = document.getElementById('back-btn');
 export const homeBtn = document.getElementById('home-btn');
 export function getTimerElements() {
   return {
-    timerContainer: document.getElementById("timer"),
+    timerContainer: document.getElementById("timer-container"),
     timerText: document.getElementById("timer-text"),
-    timerFill: document.getElementById("timer-fill"),
+    timerFill: document.getElementById("progress-fill"),
   };
 }
