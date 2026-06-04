@@ -31,11 +31,10 @@ export async function startQuiz(categoryID){
   view.toggleScreen('quiz');
 
   resetTimer();
-  startTimer(nextQuestion); // ⬅ callback when time ends
+  startTimer(30, nextQuestion);
 
   displayCurrentQuestion();
 }
-
 
 function displayCurrentQuestion(){
   const currentQuestion= state.questions[state.currentQuestionIndex];
@@ -57,9 +56,10 @@ function handleAnswerSelection(selectedOption, buttonElement){
 export function nextQuestion(){
   stopTimer();
   state.currentQuestionIndex++;
+
   if(state.currentQuestionIndex < state.questions.length){
     resetTimer();
-    startTimer(nextQuestion);
+    startTimer(30, nextQuestion);
     displayCurrentQuestion();
   } else {
     endQuiz();
